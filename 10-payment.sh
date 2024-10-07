@@ -7,6 +7,7 @@ echo -e "\e[32mInstalling Python 3.6, GCC (Compiler), and Python Development Bui
 dnf install python36 gcc python3-devel -y &>> $log
 
 echo -e "\e[32mCreating application directory.\e[0m" | tee -a $log
+rm -rf /app &>> $log
 mkdir /app &>> $log
 
 echo -e "\e[32mCreating application user.\e[0m" | tee -a $log

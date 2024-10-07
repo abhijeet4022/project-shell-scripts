@@ -7,6 +7,7 @@ echo -e "\e[32mInstalling Maven.\e[0m" | tee -a $log
 dnf install maven -y &>> $log
 
 echo -e "\e[32mCreating application directory.\e[0m" | tee -a $log
+rm -rf /app &>> $log
 mkdir /app &>> $log
 
 echo -e "\e[32mCreating application user.\e[0m" | tee -a $log

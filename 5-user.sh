@@ -13,6 +13,7 @@ echo -e "\e[32mInstalling Node.js.\e[0m" | tee -a $log
 dnf install nodejs -y &>> $log
 
 echo -e "\e[32mCreating the application directory.\e[0m" | tee -a $log
+rm -rf /app &>> $log
 mkdir /app &>> $log
 
 
