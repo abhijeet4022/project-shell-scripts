@@ -15,7 +15,7 @@ dnf install nodejs -y &>> $log
 echo -e "\e[32mCreating the application directory.\e[0m" | tee -a $log
 mkdir /app &>> $log
 
-echo -e "\e[32mDownloading the Cart application content code.\e[0m" | tee -a $log
+echo -e "\e[32mDownloading the ${component} application content code.\e[0m" | tee -a $log
 curl -o /tmp/cart.zip https://roboshop-artifacts.s3.amazonaws.com/cart.zip &>> $log
 
 echo -e "\e[32mExtracting the application code.\e[0m" | tee -a $log
