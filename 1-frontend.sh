@@ -15,7 +15,7 @@ echo -e "\e[32mExtracting the web layer code.\e[0m" | tee -a $log
 unzip -o /tmp/frontend.zip -d /usr/share/nginx/html/ &>> $log
 
 echo -e "\e[32mConfiguring reverse proxy settings.\e[0m" | tee -a $log
-cp 1-reverse-proxy.conf /etc/nginx/default.d/reverse-proxy.conf &>> $log
+cp config-files/1-reverse-proxy.conf /etc/nginx/default.d/reverse-proxy.conf &>> $log
 
 echo -e "\e[32mRestarting and enabling the Nginx service.\e[0m" | tee -a $log
 systemctl restart nginx &>> $log
