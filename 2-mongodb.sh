@@ -3,7 +3,7 @@ log="/tmp/$component.log"
 echo -e "\e[1;36m--- MongoDB Database Setup ---\e[0m" | tee -a $log
 
 echo -e "\e[32mConfiguring the MongoDB repository.\e[0m" | tee -a $log
-cp mongodb-org-4.2.repo /etc/yum.repos.d/mongodb-org-4.2.repo &>> $log
+cp repository-files/mongodb-org-4.2.repo /etc/yum.repos.d/mongodb-org-4.2.repo &>> $log
 
 echo -e "\e[32mInstalling MongoDB.\e[0m" | tee -a $log
 dnf install mongodb-org -y &>> $log
