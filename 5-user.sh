@@ -1,7 +1,7 @@
 component=user
 log="/tmp/$component.log"
 
-echo -e "\e[1;36m--- User Application Setup ---.\e[0m" | tee -a $log
+echo -e "\e[1;36m--- ${component} Application Setup ---.\e[0m" | tee -a $log
 
 echo -e "\e[32mDisabling the current Node.js module.\e[0m" | tee -a $log
 dnf module disable nodejs -y &>> $log
@@ -16,7 +16,7 @@ echo -e "\e[32mCreating the application directory.\e[0m" | tee -a $log
 mkdir /app &>> $log
 
 
-echo -e "\e[32mDownloading the Catalogue application content code.\e[0m" | tee -a $log
+echo -e "\e[32mDownloading the ${component} application content code.\e[0m" | tee -a $log
 curl -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user.zip &>> $log
 
 echo -e "\e[32mExtracting the application code.\e[0m" | tee -a $log
