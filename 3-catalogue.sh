@@ -28,7 +28,7 @@ echo -e "\e[32mCreating the application user.\e[0m" | tee -a $log
 useradd roboshop -c "Application User" &>> $log
 
 echo -e "\e[32mCreating the application service file.\e[0m" | tee -a $log
-cp catalogue.service /etc/systemd/system/catalogue.service &>> $log
+cp service-files/catalogue.service /etc/systemd/system/catalogue.service &>> $log
 
 echo -e "\e[32mEnabling and restarting the application service.\e[0m" | tee -a $log
 systemctl daemon-reload &>> $log
@@ -36,7 +36,7 @@ systemctl restart catalogue.service &>> $log
 systemctl enable catalogue.service &>> $log
 
 echo -e "\e[32mConfiguring the MongoDB repository.\e[0m" | tee -a $log
-cp mongodb-org-4.2.repo /etc/yum.repos.d/mongodb-org-4.2.repo &>> $log
+cp repository-files/mongodb-org-4.2.repo /etc/yum.repos.d/mongodb-org-4.2.repo &>> $log
 
 echo -e "\e[32mInstalling MongoDB client to load the schema.\e[0m" | tee -a $log
 dnf install mongodb-org-shell -y &>> $log
