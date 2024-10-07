@@ -7,6 +7,7 @@ unzip -o /tmp/catalogue -d /app
 npm install --prefix /app
 useradd roboshop -c "Application User"
 cp catalogue.service /etc/systemd/system/catalogue.service
+systemctl daemon-reload
 systemctl restart catalogue.service
 systemctl enable catalogue.service
 cp mongodb-org-4.2.repo /etc/yum.repos.d/mongodb-org-4.2.repo
