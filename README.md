@@ -23,8 +23,3 @@ Repository for shell scripts used to automate OS tasks in the project.
    * ./09-rabbitmq.sh <rabbitmq_user_password>
    * ./10-payment.sh <rabbitmq_user_password>
 
-
-# CentOS 8 AWS Community AMI
-    * ID: "ami-0b4f379183e5706b9"
-    * User: centos
-    * Pass: DevOps321
