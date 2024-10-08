@@ -31,6 +31,7 @@ func_systemd(){
 
 
 func_schema_setup(){
+  if [ "${schema_type}" = "mongodb" ]; then
     echo -e "\e[32mConfiguring the MongoDB repository.\e[0m" | tee -a $log
     cp repository-files/mongodb-org-4.2.repo /etc/yum.repos.d/mongodb-org-4.2.repo &>> $log
 
@@ -39,6 +40,7 @@ func_schema_setup(){
 
     echo -e "\e[32mLoading the schema for the ${component} application.\e[0m" | tee -a $log
     mongo --host mongodb.learntechnology.cloud </app/schema/${component}.js &>> $log
+  fi
 }
 
 
