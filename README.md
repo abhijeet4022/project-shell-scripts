@@ -10,6 +10,13 @@ Repository for shell scripts used to automate OS tasks in the project.
 4. If a domain is not available, use a private hosted zone.
 5. Create A records for each VM (component) with their private IPs.
    * Replace the existing A records in the scripts with the newly created ones.
-
+   * Update the DNS records in the following files with the appropriate domain names and A records for each component:
+     - 1-reverse-proxy.conf
+     - cart.service
+     - catalogue.service
+     - payment.service
+     - shipping.service
+     - user.service
+     - component_setup.sh
 # AWS AMI
 "ami-0b4f379183e5706b9"
