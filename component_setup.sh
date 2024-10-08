@@ -3,7 +3,7 @@ log="/tmp/$component.log"
 
 func_apppreq(){
     echo -e "\e[32mCreating the ${component} application service file.\e[0m" | tee -a $log
-    cp service-files/catalogue.service /etc/systemd/system/catalogue.service &>> $log
+    cp service-files/${component}.service /etc/systemd/system/${component}.service &>> $log
 
     echo -e "\e[32mCreating the application user.\e[0m" | tee -a $log
     useradd roboshop -c "Application User" &>> $log
@@ -15,18 +15,18 @@ func_apppreq(){
     mkdir /app &>> $log
 
     echo -e "\e[32mDownloading the ${component} application content code.\e[0m" | tee -a $log
-    curl -L -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip &>> $log
+    curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>> $log
 
     echo -e "\e[32mExtracting the ${component} application code.\e[0m" | tee -a $log
-    unzip -o /tmp/catalogue -d /app &>> $log
+    unzip -o /tmp/${component}.zip -d /app &>> $log
 }
 
 
 func_systemd(){
     echo -e "\e[32mEnabling and restarting the ${component} application service.\e[0m" | tee -a $log
     systemctl daemon-reload &>> $log
-    systemctl restart catalogue.service &>> $log
-    systemctl enable catalogue.service &>> $log
+    systemctl restart ${component}.service &>> $log
+    systemctl enable ${component}.service &>> $log
 }
 
 
@@ -38,7 +38,7 @@ func_schema_setup(){
     dnf install mongodb-org-shell -y &>> $log
 
     echo -e "\e[32mLoading the schema for the ${component} application.\e[0m" | tee -a $log
-    mongo --host mongodb.learntechnology.cloud </app/schema/catalogue.js &>> $log
+    mongo --host mongodb.learntechnology.cloud </app/schema/${component}.js &>> $log
 }
 
 
@@ -54,17 +54,15 @@ func_nodejs(){
   echo -e "\e[32mInstalling Node.js.\e[0m" | tee -a $log
   dnf install nodejs -y &>> $log
 
-
+  # Calling func_apppreq function
   func_apppreq
 
   echo -e "\e[32mDownloading application dependencies from package.json.\e[0m" | tee -a $log
   npm install --prefix /app &>> $log
 
+  # Calling func_schema_setup function
+  func_schema_setup
 
-
-
-
-
-
-
+  # Calling func_systemd function
+  func_systemd
 }
