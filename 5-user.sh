@@ -1,4 +1,4 @@
-component="catalogue"
+component="user"
 schema_type="mongodb"
 source ./component_setup.sh
 
