@@ -17,6 +17,12 @@ Repository for shell scripts used to automate OS tasks in the project.
      - shipping.service
      - user.service
      - component_setup.sh
+6. Provide the password as the first argument while running the following scripts:
+   * ./07-mysql.sh <mysql_root_password>
+   * ./08-shipping.sh <mysql_root_password>
+   * ./09-rabbitmq.sh <rabbitmq_user_password>
+   * ./10-payment.sh <rabbitmq_user_password>
+
 
 # AWS AMI
 "ami-0b4f379183e5706b9"
