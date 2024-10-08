@@ -1,7 +1,8 @@
-component=catalogue
-source component_setup.sh
+component="catalogue"
+schema_type="mongodb"
+source ./component_setup.sh
 
 
-# Calling func_nodejs function to setup catalogue
+# Calling func_nodejs function to setup user
 func_nodejs
 
