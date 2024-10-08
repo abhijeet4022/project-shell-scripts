@@ -1,7 +1,6 @@
 # project-shell-scripts
 Repository for shell scripts used to automate OS tasks in the project.
 
-
 # Pre-Requisites
 1. Launch 10 VMs in AWS, one for each component. Use CentOS 8 for practice.
 2. Purchase a domain for the application.
@@ -18,5 +17,6 @@ Repository for shell scripts used to automate OS tasks in the project.
      - shipping.service
      - user.service
      - component_setup.sh
+
 # AWS AMI
 "ami-0b4f379183e5706b9"
