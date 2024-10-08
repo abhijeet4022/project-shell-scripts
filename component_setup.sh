@@ -41,6 +41,14 @@ func_schema_setup(){
     echo -e "\e[32mLoading the schema for the ${component} application.\e[0m" | tee -a $log
     mongo --host mongodb.learntechnology.cloud </app/schema/${component}.js &>> $log
   fi
+
+  if [ "${schema_type}" = "mysql" ]; then
+    echo -e "\e[32mInstalling MySQL.\e[0m" | tee -a $log
+    dnf install mysql -y &>> $log
+
+    echo -e "\e[32mLoading the schema into MySQL.\e[0m" | tee -a $log
+    mysql -h mysql.learntechnology.cloud -uroot -pRoboShop@1 < /app/schema/${component}.sql &>> $log
+  fi
 }
 
 
@@ -64,6 +72,43 @@ func_nodejs(){
 
   # Calling func_schema_setup function
   func_schema_setup
+
+  # Calling func_systemd function
+  func_systemd
+}
+
+
+func_java(){
+  echo -e "\e[1;36m--- ${component} Application Setup ---\e[0m" | tee -a $log
+
+  echo -e "\e[32mInstalling Maven.\e[0m" | tee -a $log
+  dnf install maven -y &>> $log
+
+  # Calling func_apppreq function
+  func_apppreq
+
+  echo -e "\e[32mBuilding the application using Maven.\e[0m" | tee -a $log
+  mvn clean package -f /app/pom.xml &>> $log
+  mv /app/target/${component}-1.0.jar /app/${component}.jar &>> $log
+
+  # Calling func_schema_setup function
+  func_schema_setup
+  # Calling func_systemd function
+  func_systemd
+}
+
+
+func_python() {
+  echo -e "\e[1;36m--- ${component} Application Setup ---\e[0m" | tee -a $log
+
+  echo -e "\e[32mInstalling Python 3.6, GCC (Compiler), and Python Development Build Tools.\e[0m" | tee -a $log
+  dnf install python36 gcc python3-devel -y &>> $log
+
+  # Calling func_apppreq function
+  func_apppreq
+
+  echo -e "\e[32mInstalling the required Python dependencies.\e[0m" | tee -a $log
+  pip3.6 install -r /app/requirements.txt &>> $log
 
   # Calling func_systemd function
   func_systemd
