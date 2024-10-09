@@ -1,5 +1,11 @@
 component=mysql
 log="/tmp/$component.log"
+mysql_root_password=$1
+if [ -z "${mysql_root_password}" ]; then
+  echo "Input Password Missing: Please Pass the MySQL Root Password as First Argument"
+  exit 1
+fi
+
 
 echo -e "\e[1;36m--- ${component} Application Setup ---\e[0m" | tee -a $log
 
@@ -17,4 +23,4 @@ systemctl enable mysqld &>> $log
 systemctl restart mysqld &>> $log
 
 echo -e "\e[32mResetting the MySQL root password.\e[0m" | tee -a $log
-mysql_secure_installation --set-root-pass RoboShop@1 &>> $log
+mysql_secure_installation --set-root-pass ${mysql_root_password} &>> $log
