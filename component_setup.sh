@@ -47,7 +47,7 @@ func_schema_setup(){
     dnf install mysql -y &>> $log
 
     echo -e "\e[32mLoading the schema into MySQL.\e[0m" | tee -a $log
-    mysql -h mysql.learntechnology.cloud -uroot -pRoboShop@1 < /app/schema/${component}.sql &>> $log
+    mysql -h mysql.learntechnology.cloud -uroot -p${mysql_root_password} < /app/schema/${component}.sql &>> $log
   fi
 }
 
