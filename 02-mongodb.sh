@@ -17,5 +17,5 @@ func_exit_status
 
 echo -e "\e[36mRestarting and enabling the MongoDB service.\e[0m" | tee -a $log
 systemctl enable mongod &>> $log
-systemctl restart mongod &>>
+systemctl restart mongod &>> $log
 func_exit_status
