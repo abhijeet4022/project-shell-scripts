@@ -16,7 +16,10 @@ func_apppreq(){
     func_exit_status
 
     echo -e "\e[36mCreating the application user.\e[0m" | tee -a $log
+    id roboshop &>> $log
+    if [ $? -ne 0 ]; then
     useradd roboshop -c "Application User" &>> $log
+    fi
     func_exit_status
 
     echo -e "\e[36mRemoving the old ${component} application directory.\e[0m" | tee -a $log
