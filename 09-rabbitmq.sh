@@ -1,4 +1,5 @@
 component=rabbitmq
+rabbitmq_user=roboshop
 source ./component_setup.sh
 
 rabbitmq_app_password=$1
@@ -27,7 +28,11 @@ systemctl restart rabbitmq-server &>> $log
 func_exit_status
 
 echo -e "\e[36mAdding 'roboshop' user to RabbitMQ.\e[0m" | tee -a $log
-rabbitmqctl add_user roboshop ${rabbitmq_app_password} &>> $log
+# Check if the user exists
+user_check=$(rabbitmqctl list_users | grep -w "$rabbitmq_user")
+if [ -z "${user_check}" ]; then
+  rabbitmqctl add_user ${rabbitmq_user} ${rabbitmq_app_password} &>> $log
+fi
 func_exit_status
 
 echo -e "\e[36mSetting permissions for 'roboshop' user in RabbitMQ.\e[0m" | tee -a $log
