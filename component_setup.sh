@@ -45,9 +45,11 @@ func_schema_setup(){
   if [ "${schema_type}" = "mysql" ]; then
     echo -e "\e[32mInstalling MySQL.\e[0m" | tee -a $log
     dnf install mysql -y &>> $log
+    echo $?
 
     echo -e "\e[32mLoading the schema into MySQL.\e[0m" | tee -a $log
     mysql -h mysql.learntechnology.cloud -uroot -p${mysql_root_password} < /app/schema/${component}.sql &>> $log
+    echo $?
   fi
 }
 
