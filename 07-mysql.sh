@@ -6,7 +6,6 @@ if [ -z "${mysql_root_password}" ]; then
   exit 1
 fi
 
-
 echo -e "\e[1;36m--- ${component} Application Setup ---\e[0m" | tee -a $log
 
 echo -e "\e[32mDisabling the current MySQL module.\e[0m" | tee -a $log
